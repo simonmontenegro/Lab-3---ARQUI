@@ -1,0 +1,4 @@
+Query Model -> GET
+Command Model -> POST/PUT/DELETE
+
+Axon server -> 8024 (http)
