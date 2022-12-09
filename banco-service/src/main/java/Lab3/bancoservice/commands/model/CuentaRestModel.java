@@ -1,6 +1,5 @@
 package Lab3.bancoservice.commands.model;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 @Data

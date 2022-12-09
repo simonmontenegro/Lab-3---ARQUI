@@ -1,6 +1,7 @@
 package Lab3.bancoservice.commands.data;
 
-import jakarta.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import lombok.*;
 
 @Data

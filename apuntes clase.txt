@@ -2,5 +2,6 @@ Query Model -> GET
 Command Model -> POST/PUT/DELETE
 
 Axon server -> 8024 (http)
+	java -jar axonserver.jar
 
 1:02:00 comienza la parte de queries
