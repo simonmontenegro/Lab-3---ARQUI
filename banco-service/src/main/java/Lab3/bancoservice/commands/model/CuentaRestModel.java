@@ -5,5 +5,6 @@ import lombok.*;
 @Data
 @Builder
 public class CuentaRestModel {
-    private double saldo;
+    private int saldo;
+    private String nombre_persona;
 }

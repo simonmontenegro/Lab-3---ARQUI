@@ -24,6 +24,7 @@ public class CuentaCommandController {
                 CreateCuentaCommand.builder()
                     .id(UUID.randomUUID().toString())
                     .saldo(cuentaRestModel.getSaldo())
+                    .nombre_persona(cuentaRestModel.getNombre_persona())
                     .build();
         String result = commandGateway.sendAndWait(createCuentaCommand);
         return result;
