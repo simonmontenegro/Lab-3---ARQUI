@@ -26,6 +26,7 @@ public class CuentaProjection {
                 cuentas.stream()
                     .map(cuenta -> CuentaRestModel
                             .builder()
+                            .id(cuenta.getId())
                             .saldo(cuenta.getSaldo())
                             .nombre_persona(cuenta.getNombre_persona())
                             .build())

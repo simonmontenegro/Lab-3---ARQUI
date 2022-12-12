@@ -29,4 +29,31 @@ public class CuentaCommandController {
         String result = commandGateway.sendAndWait(createCuentaCommand);
         return result;
     }
+
+    @PutMapping("/depositar/{id}")
+    public String depositarCuenta(@RequestBody ActualizarSaldoRestModel actualizarSaldoRestModel, @PathVariable("id") String id) {
+
+        DepositarCommand actualizarSaldoCommand =
+                DepositarCommand.builder()
+                        .id(id)
+                        .monto(actualizarSaldoRestModel.getMonto())
+                        .nombre_persona(actualizarSaldoRestModel.getNombre_persona())
+                        .build();
+        String result = commandGateway.sendAndWait(actualizarSaldoCommand);
+
+        return result;
+    }
+
+    @PutMapping("/retirar/{id}")
+    public String retirarCuenta(@RequestBody ActualizarSaldoRestModel actualizarSaldoRestModel, @PathVariable("id") String id) {
+
+        RetirarCommand actualizarSaldoCommand =
+                RetirarCommand.builder()
+                        .id(id)
+                        .monto(actualizarSaldoRestModel.getMonto())
+                        .nombre_persona(actualizarSaldoRestModel.getNombre_persona())
+                        .build();
+        String result = commandGateway.sendAndWait(actualizarSaldoCommand);
+        return result;
+    }
 }

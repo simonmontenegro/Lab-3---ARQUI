@@ -24,4 +24,18 @@ public class CuentaEventsHandler {
         BeanUtils.copyProperties(event, cuenta);
         cuentaRepository.save(cuenta);
     }
+
+    //Depositar
+    @EventHandler
+    public void on(DepositarEvent event)  {
+        Cuenta cuenta = cuentaRepository.findById(event.getId()).orElseThrow();
+        cuenta.setSaldo(cuenta.getSaldo() + event.getMonto());
+    }
+
+    //Retirar
+    @EventHandler
+    public void on(RetirarEvent event)  {
+        Cuenta cuenta = cuentaRepository.findById(event.getId()).orElseThrow();
+        cuenta.setSaldo(cuenta.getSaldo() - event.getMonto());
+    }
 }

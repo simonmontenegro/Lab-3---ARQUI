@@ -4,8 +4,8 @@ import lombok.*;
 
 @Data
 @Builder
-public class CuentaRestModel {
+public class ActualizarSaldoRestModel {
     private String id;
-    private int saldo;
+    private int monto;
     private String nombre_persona;
 }

@@ -36,4 +36,44 @@ public class CuentaAggregate {
         this.id = cuentaCreatedEvent.getId();
         this.saldo = cuentaCreatedEvent.getSaldo();
     }
+
+    //Depositar
+    @CommandHandler
+    public void cuentaAggregate(DepositarCommand depositarCommand){
+        DepositarEvent depositarEvent = new DepositarEvent();
+
+        BeanUtils.copyProperties(depositarCommand, depositarEvent);
+
+        AggregateLifecycle.apply(depositarEvent);
+    }
+
+    @EventSourcingHandler
+    public void on(DepositarEvent depositarEvent){
+        this.id = depositarEvent.getId();
+        this.saldo = this.saldo + depositarEvent.getMonto();
+        this.nombre_persona = depositarEvent.getNombre_persona();
+    }
+
+    //Retirar
+    @CommandHandler
+    public void cuentaAggregate(RetirarCommand retirarCommand){
+        if(this.saldo - retirarCommand.getMonto() < 0){
+            System.out.println("No es posible retirar dicha cantidad de dinero, intente con un monto inferior");
+        }
+        else{
+            RetirarEvent retirarEvent = new RetirarEvent();
+
+            BeanUtils.copyProperties(retirarCommand, retirarEvent);
+
+            AggregateLifecycle.apply(retirarEvent);
+        }
+
+    }
+
+    @EventSourcingHandler
+    public void on(RetirarEvent retirarEvent){
+        this.id = retirarEvent.getId();
+        this.saldo = this.saldo - retirarEvent.getMonto();
+        this.nombre_persona = retirarEvent.getNombre_persona();
+    }
 }
